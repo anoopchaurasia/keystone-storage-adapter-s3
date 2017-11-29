@@ -9,7 +9,9 @@ var assign = require('object-assign');
 var debug = require('debug')('keystone-s3');
 var ensureCallback = require('keystone-storage-namefunctions/ensureCallback');
 var fs = require('fs');
-var S3 = require('aws-sdk/clients/s3');
+var AWS = require('aws-sdk');
+var EP = new AWS.Endpoint(process.env.S3_EP);
+
 var nameFunctions = require('keystone-storage-namefunctions');
 var pathlib = require('path');
 
@@ -18,7 +20,8 @@ var DEFAULT_OPTIONS = {
 	generateFilename: nameFunctions.randomFilename,
 };
 
-var s3 = new S3({
+var s3 = new AWS.S3({
+	endpoint: EP,
 	accessKeyId: process.env.S3_KEY,
 	secretAccessKey: process.env.S3_SECRET,
 	region: process.env.S3_REGION || 'us-east-1',
