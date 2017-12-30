@@ -22,10 +22,7 @@ var DEFAULT_OPTIONS = {
 };
 
 var s3 = new AWS.S3({
-	endpoint: EP,
-	accessKeyId: process.env.S3_KEY,
-	secretAccessKey: process.env.S3_SECRET,
-	region: process.env.S3_REGION || 'us-east-1',
+	endpoint: EP
 });
 
 // This constructor is usually called indirectly by the Storage class
