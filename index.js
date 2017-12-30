@@ -10,7 +10,7 @@ var debug = require('debug')('keystone-s3');
 var ensureCallback = require('keystone-storage-namefunctions/ensureCallback');
 var fs = require('fs');
 var AWS = require('aws-sdk');
-AWS.loadFromPath(process.env.S3_CONFIG_FILE);
+AWS.config.loadFromPath(process.env.S3_CONFIG_FILE);
 var EP = new AWS.Endpoint(process.env.S3_EP);
 
 var nameFunctions = require('keystone-storage-namefunctions');
