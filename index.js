@@ -79,7 +79,7 @@ S3Adapter.prototype._resolveFilename = function (file) {
 	// of the bucket. (Whew!)
 	var path = file.path || this.options.path || '/';
 	var filename = pathlib.posix.resolve(path, file.filename);
-	return (filename.length && filename[0] === '/') ? filename.substring(1) : filename;
+	return ((filename.length && filename[0] === '/') ? filename.substring(1) : filename).replace(/\/\//g, "/").replace(":/", "://");
 };
 
 S3Adapter.prototype._awsParams = function (file) {
